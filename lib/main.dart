@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:meal_app/screens/category_meals_screen.dart';
+import '../screens/category_meals_screen.dart';
+import '../screens/meal_detail_screen.dart';
 import 'screens/categories_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,11 +24,24 @@ class MyApp extends StatelessWidget {
                   fontSize: 20,
                   fontFamily: 'RobotoCondensed',
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 255, 255, 255)))),
+                  color: Color.fromARGB(255, 255, 255, 255)),
+              headline5: TextStyle(
+                fontSize: 20,
+                fontFamily: 'RobotoCondensed',
+                fontWeight: FontWeight.bold,
+              ))),
       initialRoute: '/',
       routes: {
         '/': (ctx) => CategoryScreen(),
         CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+      },
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   return MaterialPageRoute(builder: (context) => CategoryScreen());
+      // },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => CategoryScreen());
       },
     );
   }
